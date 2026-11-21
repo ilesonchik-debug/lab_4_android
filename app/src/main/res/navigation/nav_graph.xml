@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.lab4.HomeFragment"
+        android:label="главная">
+
+        <action
+            android:id="@+id/action_home_to_category"
+            app:destination="@id/categoryFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.lab4.CategoryFragment"
+        android:label="варианты куда сходить">
+
+        <argument
+            android:name="categoryId"
+            app:argType="string"
+            android:defaultValue="attractions" />
+
+        <action
+            android:id="@+id/action_category_to_detail"
+            app:destination="@id/detailFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.lab4.DetailFragment"
+        android:label="подробнее">
+
+        <argument
+            android:name="placeName"
+            app:argType="string"
+            android:defaultValue="место" />
+
+        <argument
+            android:name="placeDescription"
+            app:argType="string"
+            android:defaultValue="Описание отсутствует" />
+
+        <argument
+            android:name="placeCategory"
+            app:argType="string"
+            android:defaultValue="категория" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.lab4.InfoFragment"
+        android:label="информация">
+
+        <argument
+            android:name="infoType"
+            app:argType="string"
+            android:defaultValue="about" />
+
+    </fragment>
+
+</navigation>
