@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.ScrollView
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.core.os.bundleOf
 
 class HomeFragment : Fragment() {
 
@@ -21,60 +22,77 @@ class HomeFragment : Fragment() {
 
         val context = requireContext()
 
-        val layout = LinearLayout(context).apply {
-            orientation = LinearLayout.VERTICAL
-            gravity = Gravity.CENTER
-            setPadding(24, 24, 24, 24)
+        // Основной прокручиваемый контейнер
+        val scrollView = ScrollView(context).apply {
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+            isFillViewport = true
         }
 
+        // Содержимое главной страницы
+        val content = LinearLayout(context).apply {
+            orientation = LinearLayout.VERTICAL
+            gravity = Gravity.CENTER_HORIZONTAL
+            setPadding(24, 24, 24, 32)
+        }
+
+        // Заголовок
         val title = TextView(context).apply {
             text = "Санкт-Петербург"
             textSize = 28f
             gravity = Gravity.CENTER
+            setPadding(0, 16, 0, 12)
         }
 
         val subtitle = TextView(context).apply {
-            text = "Куда отправимся сегодня?"
+            text = "Выберите категорию"
             textSize = 18f
             gravity = Gravity.CENTER
-            setPadding(0, 16, 0, 24)
+            setPadding(0, 0, 0, 24)
         }
 
-        layout.addView(title)
-        layout.addView(subtitle)
+        content.addView(title)
+        content.addView(subtitle)
 
-        val categories = listOf(
-            "Достопримечательности" to "attractions",
-            "Кафе и рестораны" to "cafes",
-            "Парки" to "parks",
-            "Развлечения" to "entertainment"
-        )
+        // Категории
+        addCategoryButton(content, "Достопримечательности", "attractions")
+        addCategoryButton(content, "Кафе и рестораны", "cafes")
+        addCategoryButton(content, "Парки", "parks")
+        addCategoryButton(content, "Развлечения", "entertainment")
 
-        categories.forEach { (name, id) ->
+        scrollView.addView(content)
 
-            val button = Button(context).apply {
-                text = name
-                textSize = 16f
+        return scrollView
+    }
 
-                setOnClickListener {
-                    findNavController().navigate(
-                        R.id.categoryFragment,
-                        bundleOf("categoryId" to id)
-                    )
-                }
-            }
+    private fun addCategoryButton(
+        container: LinearLayout,
+        buttonText: String,
+        categoryId: String
+    ) {
+        val button = Button(requireContext()).apply {
+            text = buttonText
+            textSize = 16f
+            isAllCaps = false
+            minHeight = 64
+        }
 
-            layout.addView(
-                button,
-                LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                ).apply {
-                    bottomMargin = 12
-                }
+        val params = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        ).apply {
+            setMargins(0, 8, 0, 8)
+        }
+
+        container.addView(button, params)
+
+        button.setOnClickListener {
+            findNavController().navigate(
+                R.id.categoryFragment,
+                bundleOf("categoryId" to categoryId)
             )
         }
-
-        return layout
     }
 }
