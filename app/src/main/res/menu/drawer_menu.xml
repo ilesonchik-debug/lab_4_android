@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/menuHome"
+            android:title="главная"
+            android:icon="@android:drawable/ic_menu_view" />
+
+        <item
+            android:id="@+id/menuAttractions"
+            android:title="достопримечательности"
+            android:icon="@android:drawable/ic_menu_mapmode" />
+
+        <item
+            android:id="@+id/menuCafes"
+            android:title="покушать"
+            android:icon="@android:drawable/ic_menu_myplaces" />
+
+        <item
+            android:id="@+id/menuParks"
+            android:title="парки"
+            android:icon="@android:drawable/ic_menu_compass" />
+
+        <item
+            android:id="@+id/menuEntertainment"
+            android:title="развлечения"
+            android:icon="@android:drawable/ic_media_play" />
+
+    </group>
+
+    <item android:title="дополнительно">
+
+        <menu>
+
+            <item
+                android:id="@+id/menuFavorites"
+                android:title="избранное"
+                android:icon="@android:drawable/btn_star_big_on" />
+
+            <item
+                android:id="@+id/menuSettings"
+                android:title="настройки"
+                android:icon="@android:drawable/ic_menu_preferences" />
+
+            <item
+                android:id="@+id/menuAbout"
+                android:title="о городе"
+                android:icon="@android:drawable/ic_menu_info_details" />
+
+        </menu>
+
+    </item>
+
+</menu>
