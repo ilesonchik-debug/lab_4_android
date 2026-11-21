@@ -57,10 +57,10 @@ class HomeFragment : Fragment() {
         content.addView(subtitle)
 
         // Категории
-        addCategoryButton(content, "Достопримечательности", "attractions")
-        addCategoryButton(content, "Кафе и рестораны", "cafes")
-        addCategoryButton(content, "Парки", "parks")
-        addCategoryButton(content, "Развлечения", "entertainment")
+        addCategoryButton(content, "достопримечательности", "attractions")
+        addCategoryButton(content, "кафе и рестораны", "cafes")
+        addCategoryButton(content, "парки", "parks")
+        addCategoryButton(content, "развлечения", "entertainment")
 
         scrollView.addView(content)
 

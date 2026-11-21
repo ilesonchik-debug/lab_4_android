@@ -100,9 +100,8 @@ class InfoFragment : Fragment() {
             "settings" -> {
 
                 contentText.text =
-                    "настройки приложения\n\n" +
                             "город: Санкт-Петербург\n\n" +
-                            "ну настройки есть, но настроек нет" +
+                            "ну настройки есть, но настроек нет"
 
                 layout.addView(contentText)
             }
